@@ -1,8 +1,3 @@
-const start = document.querySelector(".start")
-start.addEventListener("click",()=>{
-    window.location.href = "./home.html"
-})
-
 /**
  * Point culture (en Français car je suis un peu obligé): 
  * Dans ce genre de jeu, un mot equivaut a 5 caractères, y compris les espaces. 
@@ -18,6 +13,23 @@ const modeSelect = document.getElementById("mode");
 const wordDisplay = document.getElementById("word-display");
 const inputField = document.getElementById("input-field");
 const results = document.getElementById("results");
+const start = document.querySelector(".start")
+
+
+
+
+/**********************************************************************************************************************/
+// logique de la page index.html
+if (start) {
+    start.addEventListener("click",()=>{
+        window.location.href = "./home.html"
+    })
+}
+
+
+
+/**********************************************************************************************************************/
+
 
 const words = {
     easy: ["apple", "banana", "grape", "orange", "cherry"],
