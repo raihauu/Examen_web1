@@ -14,21 +14,8 @@ const wordDisplay = document.getElementById("word-display");
 const inputField = document.getElementById("input-field");
 const results = document.getElementById("results");
 const start = document.querySelector(".start")
-
-
-
-
-/**********************************************************************************************************************/
-// logique de la page index.html
-if (start) {
-    start.addEventListener("click",()=>{
-        window.location.href = "./home.html"
-    })
-}
-
-
-
-/**********************************************************************************************************************/
+let accuracies=[]
+let wpms=[]
 
 
 const words = {
@@ -37,6 +24,41 @@ const words = {
     hard: ["synchronize", "complicated", "development", "extravagant", "misconception"]
 };
 
+
+
+
+function average(tab) {
+    
+    let sum=0
+    for (let numb of tab) {
+        numb=Number(numb)
+        sum+=numb
+    }
+    
+    return ((sum)/(tab.length))
+}
+const calcAcc = (inputValue,word) => {
+    let longer
+    let shorter
+    if (inputValue.length>=word.length) {
+        longer=inputValue.length
+        shorter=word.length
+    }else{
+        longer=word.length
+        shorter=inputValue.length
+    }
+    let correct=0
+
+    for (let i = 0; i < shorter; i++) {
+        const char = word[i];
+        const chartyped=inputValue[i]
+
+        if (char==chartyped) {
+            correct+=1
+        }
+    }
+    return (correct/longer)*100
+}
 // Generate a random word from the selected mode
 const getRandomWord = (mode) => {
     const wordList = words[mode];
@@ -44,7 +66,7 @@ const getRandomWord = (mode) => {
 };
 
 // Initialize the typing test
-const startTest = (wordCount = 50) => {
+const startTest = (wordCount = 5) => {
     wordsToType.length = 0; // Clear previous words
     wordDisplay.innerHTML = ""; // Clear display
     currentWordIndex = 0;
@@ -75,7 +97,7 @@ const startTimer = () => {
 const getCurrentStats = () => {
     const elapsedTime = (Date.now() - previousEndTime) / 1000; // Seconds
     const wpm = (wordsToType[currentWordIndex].length / 5) / (elapsedTime / 60); // 5 chars = 1 word
-    const accuracy = (wordsToType[currentWordIndex].length / inputField.value.length) * 100;
+    const accuracy = calcAcc(wordsToType[currentWordIndex], inputField.value);
 
     return { wpm: wpm.toFixed(2), accuracy: accuracy.toFixed(2) };
 };
@@ -83,18 +105,43 @@ const getCurrentStats = () => {
 // Move to the next word and update stats only on spacebar press
 const updateWord = (event) => {
     if (event.key === " ") { // Check if spacebar is pressed
-        if (inputField.value.trim() === wordsToType[currentWordIndex]) {
+        if (inputField.value.trim()!="") {
             if (!previousEndTime) previousEndTime = startTime;
+            if (currentWordIndex<wordsToType.length-1) {
+                const { wpm, accuracy } = getCurrentStats();
+                results.textContent = `WPM: ${wpm}, Accuracy: ${accuracy}%`;
 
-            const { wpm, accuracy } = getCurrentStats();
-            results.textContent = `WPM: ${wpm}, Accuracy: ${accuracy}%`;
+                wpms.push(wpm)
+                accuracies.push(accuracy)
 
-            currentWordIndex++;
-            previousEndTime = Date.now();
-            highlightNextWord();
+                currentWordIndex++;
+                previousEndTime = Date.now();
+                highlightNextWord(accuracy);
 
-            inputField.value = ""; // Clear input field after space
-            event.preventDefault(); // Prevent adding extra spaces
+                inputField.value = ""; // Clear input field after space
+                event.preventDefault(); // Prevent adding extra spaces
+                console.log(currentWordIndex);
+                
+            }else{
+                console.log("fin");
+                const { wpm, accuracy } = getCurrentStats();
+                results.textContent = `WPM: ${wpm}, Accuracy: ${accuracy}%`;
+
+                wpms.push(wpm)
+                accuracies.push(accuracy)
+
+                let avg_wpm=String(average(wpms).toFixed(2))
+                let avg_acc=String(average(accuracies).toFixed(2))
+
+                localStorage.setItem("wpms",avg_wpm)
+                localStorage.setItem("accuracies",avg_acc)
+
+                console.log(avg_acc);
+                console.log(avg_wpm);
+
+                window.location.href="./result.html"
+            }
+            
         }
     }
 };
@@ -111,13 +158,32 @@ const highlightNextWord = () => {
     }
 };
 
-// Event listeners
-// Attach `updateWord` to `keydown` instead of `input`
-inputField.addEventListener("keydown", (event) => {
-    startTimer();
-    updateWord(event);
-});
-modeSelect.addEventListener("change", () => startTest());
 
-// Start the test
-startTest();
+/**********************************************************************************************************************/
+// logique de la page index.html
+if (start) {
+    start.addEventListener("click",()=>{
+        window.location.href = "./home.html"
+    })
+}
+
+
+
+
+/**********************************************************************************************************************/
+// logique de la page principale du jeu
+else if(inputField){
+    // Attach `updateWord` to `keydown` instead of `input`
+    inputField.addEventListener("keydown", (event) => {
+        startTimer();
+        updateWord(event);
+    });
+    modeSelect.addEventListener("change", () => startTest());
+
+    // Start the test
+    startTest();
+}
+
+
+/**********************************************************************************************************************/
+// logique de la page de résultat
