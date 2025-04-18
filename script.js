@@ -13,6 +13,8 @@ const wordsToType = [];
 /**********************************************************************************************************************/
 // élément de la page d'acceuil
 const start = document.querySelector(".start")
+const languageSelector=document.querySelector("#language")
+const difficultySelector=document.querySelector("#difficulty")
 
 
 /**********************************************************************************************************************/
@@ -37,10 +39,50 @@ const replayButton=document.querySelector(".replay_button")
 
 
 const words = {
-    easy: ["apple", "banana", "grape", "orange", "cherry"],
-    medium: ["keyboard", "monitor", "printer", "charger", "battery"],
-    hard: ["synchronize", "complicated", "development", "extravagant", "misconception"]
-};
+    fr: {
+      easy: [
+        "clavier", "souris", "écran", "fichier", "dossier",
+        "internet", "bug", "mail", "photo", "clic"
+      ],
+      medium: [
+        "navigateur", "serveur", "réseau", "logiciel", "mémoire",
+        "processeur", "programme", "algorithme", "système", "donnée"
+      ],
+      hard: [
+        "compilateur", "encapsulation", "multithreading", "virtualisation", "intelligence",
+        "intégration", "récursivité", "asynchrone", "machine virtuelle", "pointeur"
+      ]
+    },
+    en: {
+      easy: [
+        "mouse", "screen", "keyboard", "file", "folder",
+        "internet", "bug", "email", "photo", "click"
+      ],
+      medium: [
+        "browser", "server", "network", "software", "memory",
+        "processor", "program", "algorithm", "system", "data"
+      ],
+      hard: [
+        "compiler", "encapsulation", "multithreading", "virtualization", "intelligence",
+        "integration", "recursion", "asynchronous", "virtual machine", "pointer"
+      ]
+    },
+    mg: {
+      easy: [
+        "tabilao", "sary", "fitanana", "fisie", "lahatahiry",
+        "aotra", "boky", "finday", "kilika", "tariby"
+      ],
+      medium: [
+        "navigatera", "mpizara", "tambajotra", "rindranasa", "fitadidiana",
+        "mpanodina", "programa", "aligoritma", "rafitra", "angona"
+      ],
+      hard: [
+        "fandikana", "fanaparitahana", "multithreading", "virtualisationa", "fahaizana artifisialy",
+        "fitambaran-drafitra", "famerimberenana", "asa tsy miandry", "milina virtoaly", "mpanondro"
+      ]
+    }
+  };
+  
 
 
 
@@ -78,8 +120,8 @@ const calcAcc = (inputValue,word) => {
     return (correct/longer)*100
 }
 // Generate a random word from the selected mode
-const getRandomWord = (mode) => {
-    const wordList = words[mode];
+const getRandomWord = (language,difficulty) => {
+    const wordList = words[language][difficulty];
     return wordList[Math.floor(Math.random() * wordList.length)];
 };
 
@@ -90,9 +132,16 @@ const startTest = (wordCount = 5) => {
     currentWordIndex = 0;
     startTime = null;
     previousEndTime = null;
+    let difficulty=localStorage.getItem("difficulty")||"easy"
+    let language=localStorage.getItem("language")||"fr"
+    if (!language || !difficulty || !words[language] || !words[language][difficulty]) {
+        alert("Langue ou difficulté non sélectionnée ou invalide. Retour au menu.");
+        window.location.href = "./index.html";
+        return;
+    }
 
     for (let i = 0; i < wordCount; i++) {
-        wordsToType.push(getRandomWord(modeSelect.value));
+        wordsToType.push(getRandomWord(language,difficulty));
     }
 
     wordsToType.forEach((word, index) => {
@@ -181,6 +230,15 @@ const highlightNextWord = () => {
 // logique de la page index.html
 if (start) {
     start.addEventListener("click",()=>{
+        console.log(languageSelector);
+        console.log(difficultySelector);
+        
+        let language=languageSelector.value||"fr"
+        let difficulty=difficultySelector.value||"easy"
+        console.log(language);
+        console.log(difficulty);
+        localStorage.setItem("language",language)
+        localStorage.setItem("difficulty",difficulty)
         window.location.href = "./home.html"
     })
 }
