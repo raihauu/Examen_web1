@@ -9,13 +9,31 @@ let startTime = null, previousEndTime = null;
 let currentWordIndex = 0;
 const wordsToType = [];
 
+
+/**********************************************************************************************************************/
+// élément de la page d'acceuil
+const start = document.querySelector(".start")
+
+
+/**********************************************************************************************************************/
+// éléments de la page principale
 const modeSelect = document.getElementById("mode");
 const wordDisplay = document.getElementById("word-display");
 const inputField = document.getElementById("input-field");
 const results = document.getElementById("results");
-const start = document.querySelector(".start")
 let accuracies=[]
 let wpms=[]
+
+
+/**********************************************************************************************************************/
+// élément de la page de résultat
+const accuracyResult=document.querySelector(".span_accuracy")
+const WPMResult=document.querySelector(".span_wpn")
+const appre=document.querySelector(".span_appre")
+const star=document.querySelector("i")
+const mainMenuButton=document.querySelector(".main_menu_button")
+const shareButton=document.querySelector(".share_button")
+const replayButton=document.querySelector(".replay_button")
 
 
 const words = {
@@ -187,3 +205,51 @@ else if(inputField){
 
 /**********************************************************************************************************************/
 // logique de la page de résultat
+else if (replayButton){
+    
+    const accuracyResult=document.querySelector(".span_accuracy")
+    const WPMResult=document.querySelector(".span_wpn")
+    const appre=document.querySelector(".span_appre")
+    const star=document.querySelector("i")
+    const mainButton=document.querySelector(".main_button")
+    const shareButton=document.querySelector(".share_button")
+    const replayButton=document.querySelector(".replay_button")
+
+    let avg_wpm=localStorage.getItem("wpms")
+    let avg_acc=localStorage.getItem("accuracies")
+
+
+    console.log(avg_wpm);
+    console.log(avg_acc);
+
+    accuracyResult.textContent+=avg_acc
+    WPMResult.textContent+=avg_wpm
+
+    if (avg_acc<=10 || avg_wpm<=10) {
+        appre.textContent+="Peut mieux faire"
+        star.style.color="red"
+    }else if(avg_acc<=60 || avg_wpm<=35){
+        appre.textContent+="Passable"
+        star.style.color="orange"
+    }else if(avg_acc<=90 || avg_wpm<=45){
+        appre.textContent+="Assez bien"
+        star.style.color="green"
+    }else if (avg_acc==100 && avg_wpm>=60) {
+        appre.textContent+="Très bien"
+        star.style.color="aqua"
+    }else{
+        appre.textContent+="bien"
+        star.style.color="gold"
+    }
+
+    
+    replayButton.addEventListener("click",()=>{
+        window.location.href="./home.html"
+    })
+    shareButton.addEventListener("click",()=>{
+        window.location.href="https://www.facebook.com/"
+    })
+    mainMenuButton.addEventListener("click",()=>{
+        window.location.href="./index.html"
+    })
+}
