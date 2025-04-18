@@ -55,3 +55,9 @@ body{
 .div_button button:hover{
     background-color: #214545;
 }
+p{
+    white-space: pre;
+}
+i{
+    align-items: center;
+}
