@@ -258,6 +258,30 @@ else if(inputField){
     
     // Start the test
     startTest();
+
+    setInterval(()=>{
+        let duration=localStorage.getItem("duration")
+        if (startTime) {
+            let timer=Math.round((duration-((Date.now()-startTime)/1000)))
+            if (timer>0) {
+                document.querySelector(".duration").textContent=timer
+            }
+            else{
+                let avg_wpm=String(average(wpms).toFixed(2))
+                let avg_acc=String(average(accuracies).toFixed(2))
+
+                localStorage.setItem("wpms",avg_wpm)
+                localStorage.setItem("accuracies",avg_acc)
+
+                window.location.href="./result.html"
+            }
+
+        }
+        else{
+            document.querySelector(".duration").textContent=duration
+        }      
+        
+    },1000)
 }
 
 
