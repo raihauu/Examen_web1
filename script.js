@@ -254,7 +254,6 @@ else if(inputField){
         startTimer();
         updateWord(event);
     });
-    modeSelect.addEventListener("change", () => startTest());
 
     // Start the test
     startTest();

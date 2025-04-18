@@ -48,9 +48,6 @@ body{
     border-radius: 12px;
 }
 
-.langue_selector{
-    
-}
 
 .right{
     display: flex;
@@ -76,4 +73,8 @@ body{
     background-color: #396762;
     width: 20%;
     height: 5rem;
+    border-radius: 12px;
+}
+.start:hover{
+    background-color: #234440;
 }

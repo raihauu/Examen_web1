@@ -61,3 +61,10 @@ p{
 i{
     align-items: center;
 }
+i{
+    display: inline-block;
+    transition: transform 0.5s;
+}
+i:hover{
+    transform: rotateY(360deg);
+}
