@@ -5,8 +5,10 @@
 }
 
 body{
-    background-color:#002222;
+    
     height: 100vh;
+    background: linear-gradient(rgba(43, 60, 53, 0.1), rgba(43, 60, 53, 0.6)),url(photos/image.png) no-repeat ;
+    background-size: cover;
 }
 
 .nav_home{
@@ -18,6 +20,23 @@ body{
     padding: 0 50px;
 }
 
+.nav_home a {
+    list-style-type:none;
+    padding-left: 0;
+    margin-left: 0;
+    text-decoration: none;
+    color: black;
+    font-size: x-large;
+    padding: 27px 20px; 
+    transition: background-color 0.3s ease;
+}
+
+.nav_home a:hover{
+    background-color: rgb(22, 76, 51);
+
+}
+
+
 .logo{
     width: 100px;
     height: 50px;
@@ -26,7 +45,7 @@ body{
 }
 
 main{
-    background-color: #D9D9D9;
+    background-color: #d9d9d9c2;
     width: 60%;
     height: 50%;
     margin: auto;
