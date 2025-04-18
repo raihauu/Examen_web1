@@ -1,0 +1,55 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color:#002222;
+    height: 100vh;
+}
+
+.nav_home{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:#D9D9D9;
+    height: 80px;
+    padding: 0 50px;
+    
+    
+    
+}
+
+.logo{
+    width: 100px;
+    height: 50px;
+    border-radius: 6px;
+    
+}
+
+main{
+    background-color: #D9D9D9;
+    width: 60%;
+    height: 50%;
+    margin: auto;
+    margin-top: 6%;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 50px;
+    width: 100%;
+    top: 0;
+}
+
+.low{
+    bottom: 50px;
+    position: relative;
+}
