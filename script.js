@@ -15,11 +15,11 @@ const wordsToType = [];
 const start = document.querySelector(".start")
 const languageSelector=document.querySelector("#language")
 const difficultySelector=document.querySelector("#difficulty")
+const durationSelector=document.querySelector("#duration")
 
 
 /**********************************************************************************************************************/
 // éléments de la page principale
-const modeSelect = document.getElementById("mode");
 const wordDisplay = document.getElementById("word-display");
 const inputField = document.getElementById("input-field");
 const results = document.getElementById("results");
@@ -126,7 +126,7 @@ const getRandomWord = (language,difficulty) => {
 };
 
 // Initialize the typing test
-const startTest = (wordCount = 5) => {
+const startTest = (wordCount = 20) => {
     wordsToType.length = 0; // Clear previous words
     wordDisplay.innerHTML = ""; // Clear display
     currentWordIndex = 0;
@@ -235,10 +235,11 @@ if (start) {
         
         let language=languageSelector.value||"fr"
         let difficulty=difficultySelector.value||"easy"
-        console.log(language);
-        console.log(difficulty);
+        let duration=durationSelector.value||30
+        
         localStorage.setItem("language",language)
         localStorage.setItem("difficulty",difficulty)
+        localStorage.setItem("duration",duration)
         window.location.href = "./home.html"
     })
 }
@@ -254,7 +255,7 @@ else if(inputField){
         startTimer();
         updateWord(event);
     });
-
+    
     // Start the test
     startTest();
 }
