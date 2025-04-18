@@ -22,7 +22,10 @@ const durationSelector=document.querySelector("#duration")
 // éléments de la page principale
 const wordDisplay = document.getElementById("word-display");
 const inputField = document.getElementById("input-field");
-const results = document.getElementById("results");
+const results_wpm = document.getElementById("results_wpm");
+const results_acc = document.getElementById("results_acc");
+console.log(results_acc);
+
 let accuracies=[]
 let wpms=[]
 
@@ -126,12 +129,15 @@ const getRandomWord = (language,difficulty) => {
 };
 
 // Initialize the typing test
-const startTest = (wordCount = 20) => {
+const startTest = (wordCount = 25) => {
+    let duration=localStorage.getItem("duration")
+    document.querySelector(".duration").textContent=duration
     wordsToType.length = 0; // Clear previous words
     wordDisplay.innerHTML = ""; // Clear display
     currentWordIndex = 0;
     startTime = null;
     previousEndTime = null;
+    
     let difficulty=localStorage.getItem("difficulty")||"easy"
     let language=localStorage.getItem("language")||"fr"
     if (!language || !difficulty || !words[language] || !words[language][difficulty]) {
@@ -147,12 +153,13 @@ const startTest = (wordCount = 20) => {
     wordsToType.forEach((word, index) => {
         const span = document.createElement("span");
         span.textContent = word + " ";
-        if (index === 0) span.style.color = "red"; // Highlight first word
+        if (index === 0) span.style.color = "#1110c1"; // Highlight first word
         wordDisplay.appendChild(span);
     });
 
     inputField.value = "";
-    results.textContent = "";
+    results_acc.textContent = "";
+    results_wpm.textContent = "";
 };
 
 // Start the timer when user begins typing
@@ -162,7 +169,7 @@ const startTimer = () => {
 
 // Calculate and return WPM & accuracy
 const getCurrentStats = () => {
-    const elapsedTime = (Date.now() - previousEndTime) / 1000; // Seconds
+    const elapsedTime = ((Date.now() - previousEndTime) / 1000)-0.008; // 
     const wpm = (wordsToType[currentWordIndex].length / 5) / (elapsedTime / 60); // 5 chars = 1 word
     const accuracy = calcAcc(wordsToType[currentWordIndex], inputField.value);
 
@@ -176,7 +183,8 @@ const updateWord = (event) => {
             if (!previousEndTime) previousEndTime = startTime;
             if (currentWordIndex<wordsToType.length-1) {
                 const { wpm, accuracy } = getCurrentStats();
-                results.textContent = `WPM: ${wpm}, Accuracy: ${accuracy}%`;
+                results_wpm.textContent = `WPM: ${wpm}`;
+                results_acc.textContent = `Accuracy: ${accuracy}%`
 
                 wpms.push(wpm)
                 accuracies.push(accuracy)
@@ -188,15 +196,17 @@ const updateWord = (event) => {
                 inputField.value = ""; // Clear input field after space
                 event.preventDefault(); // Prevent adding extra spaces
                 console.log(currentWordIndex);
-                
+                console.log(average(wpms));
+                console.log(average(accuracies));
             }else{
                 console.log("fin");
                 const { wpm, accuracy } = getCurrentStats();
-                results.textContent = `WPM: ${wpm}, Accuracy: ${accuracy}%`;
+                results_wpm.textContent = `WPM: ${wpm}%`;
+                results_acc.textContent = `Accuracy: ${accuracy}%`
 
                 wpms.push(wpm)
                 accuracies.push(accuracy)
-
+                
                 let avg_wpm=String(average(wpms).toFixed(2))
                 let avg_acc=String(average(accuracies).toFixed(2))
 
@@ -219,9 +229,14 @@ const highlightNextWord = () => {
 
     if (currentWordIndex < wordElements.length) {
         if (currentWordIndex > 0) {
-            wordElements[currentWordIndex - 1].style.color = "black";
+            if (accuracies[currentWordIndex - 1]==100) {
+                wordElements[currentWordIndex - 1].style.color = "green";
+            }
+            else{
+                wordElements[currentWordIndex - 1].style.color = "red";
+            }
         }
-        wordElements[currentWordIndex].style.color = "red";
+        wordElements[currentWordIndex].style.color = "#1110c1";
     }
 };
 
@@ -261,8 +276,11 @@ else if(inputField){
 
     setInterval(()=>{
         let duration=localStorage.getItem("duration")
+        document.querySelector(".duration").textContent=duration
+
         if (startTime) {
-            let timer=Math.round((duration-((Date.now()-startTime)/1000)))
+            const startTimer=startTime
+            let timer=Math.round((duration-((Date.now()-startTimer)/1000)))
             if (timer>0) {
                 document.querySelector(".duration").textContent=timer
             }
@@ -277,9 +295,6 @@ else if(inputField){
             }
 
         }
-        else{
-            document.querySelector(".duration").textContent=duration
-        }      
         
     },1000)
 }

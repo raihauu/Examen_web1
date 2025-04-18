@@ -57,6 +57,12 @@ main{
     justify-content: space-between;
     text-align: center;
 }
+main div.top div{
+    width: 33%;
+    border: solid black 2px;
+    height: 4rem;
+    font-size: 1.7rem;
+}
 
 .top{
     display: flex;
@@ -71,5 +77,8 @@ main{
     position: relative;
 }
 .texte{
+    width: 90%;
     font-size: 1.6rem;
+    position: relative;
+    top: -10%;
 }
