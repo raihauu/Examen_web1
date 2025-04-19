@@ -6,7 +6,7 @@ body{
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(rgba(43, 60, 53, 0.3), rgba(43, 60, 53, 0.6)),url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcESYaWhw3Q2UDgEfJeaEbdLEeGvNMiK4LBA&s");
+    background: linear-gradient(rgba(43, 60, 53, 0.3), rgba(43, 60, 53, 0.6)),url(photos/fond_login.png);
     background-size: cover;
     background-repeat: no-repeat;
     
@@ -48,6 +48,7 @@ div.div_half{
     color: white;
     font-size: 1.8rem;
     border-radius: 6px;
+    transition: background-color 0.3s ease;
 }
 .div_half.div_left button:hover{
     background-color: #0f4444;

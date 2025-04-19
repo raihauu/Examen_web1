@@ -33,6 +33,11 @@ body{
     margin-top: 25%;
 }
 
+.police_option{
+    font-size: x-large;
+    color: #002222;
+}
+
 
 .about a{
     list-style-type:none;
@@ -40,6 +45,17 @@ body{
     margin-left: 0;
     text-decoration: none;
     color: black;
+    transition: background-color 0.3s ease;
+    font-size: x-large;
+    padding: 15px;
+}
+
+.about i{
+    font-size: x-large;
+}
+
+.about a:hover{
+    background-color:#0022229b; ;
 }
 
 .logo_1{
@@ -74,6 +90,7 @@ body{
     width: 20%;
     height: 5rem;
     border-radius: 12px;
+    transition: background-color 0.3s ease;
 }
 .start:hover{
     background-color: #234440;
