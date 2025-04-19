@@ -96,7 +96,7 @@ main div.top div{
 .user_log:hover{
     color: #234440;
 }
-@media (width<=1000px) {
+@media (width<=1080px) {
     .top{
         height: 35%;
     }
@@ -110,7 +110,7 @@ main div.top div{
         width: 75% !important;
     }
 }
-@media (width<=650px) {
+@media (width<=750px) {
     .top{
         position: fixed;
         top: 85%;
