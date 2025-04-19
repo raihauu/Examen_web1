@@ -80,7 +80,20 @@ i.ic4{
     bottom: 200px;
     animation: color_change 5s infinite alternate-reverse;
 }
-
+i.back{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 2rem;
+    color: #002222;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: aliceblue;
+}
+i.back:hover{
+    background-color: rgb(190, 189, 189);
+    color: #0a3737;
+}
 .alerte{
     display: none;
     margin: auto;
