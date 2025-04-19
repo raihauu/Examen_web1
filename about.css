@@ -1,0 +1,41 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    
+    height: 100vh;
+    background: linear-gradient(rgba(43, 60, 53, 0.1), rgba(43, 60, 53, 0.6)),url(photos/image.png) no-repeat ;
+    background-size: cover;
+}
+
+.nav_about{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color:#d9d9d9bd;
+    height: 80px;
+    padding: 0 50px;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 10px;
+    
+}
+
+.nav_about a {
+    list-style-type:none;
+    padding-left: 0;
+    margin-left: 0;
+    text-decoration: none;
+    color: black;
+    font-size: x-large;
+    padding: 27px 20px; 
+    transition: background-color 0.3s ease;
+}
+
+.nav_about a:hover{
+    background-color: #0022229b;
+
+}
