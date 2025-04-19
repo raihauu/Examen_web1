@@ -29,6 +29,11 @@ body{
 
 }
 
+.police_option{
+    color: #002222;
+    font-size: x-large;
+}
+
 .setting{
     margin-top: 25%;
 }
@@ -40,6 +45,12 @@ body{
     margin-left: 0;
     text-decoration: none;
     color: black;
+    padding: 20px 20px; 
+    transition: background-color 0.3s ease;
+}
+
+.about a:hover{
+    background-color: #002222b5;
 }
 
 .logo_1{
@@ -84,7 +95,7 @@ body{
     top: 10px;
     right: 20px;
     font-size: 2rem;
-    color: #122d20e9;
+    color: #050e09e9;
 }
 .user_log:hover{
     color: #234440;
