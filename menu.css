@@ -106,6 +106,17 @@ body{
     color: #234440;
 }
 @media (width<=1072px) {
+    .left img{
+            width: 75%;
+            height: auto;
+    }
+    .right img{
+            width: 30%;
+            height: auto;
+    }
+
+}
+@media (width<=550px) {
     body{
         overflow-y: visible;
     }
@@ -130,4 +141,8 @@ body{
     .right img{
         display: none;
     }
+    .left img{
+        width: 25%;
+        height: 18%;
+}
 }

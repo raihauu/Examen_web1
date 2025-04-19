@@ -270,11 +270,10 @@ if (start) {
 // logique de la page principale du jeu
 else if(inputField){
     // Attach `updateWord` to `keydown` instead of `input`
-    inputField.addEventListener("keydown", (event) => {
-        if (inputField.value.trim()!="") {
-            startTimer();
-            updateWord(event);    
-        }
+    inputField.addEventListener("keydown", (event) => {            
+        startTimer();
+        updateWord(event);    
+    
     });
     
     // Start the test
