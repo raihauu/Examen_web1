@@ -7,7 +7,7 @@ body{
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
-    
+    width: 100%;
 
 }
 .head{
@@ -25,9 +25,10 @@ body{
 .main{
     background-color: #D9D9D9;
     width: 60%;
-    height: 50%;
+    height: auto;
     border-radius: 24px;
     font-size: 2rem;
+    min-width: 240px;
 }
 .result_title{
     display: flex;
@@ -59,6 +60,7 @@ body{
 }
 p{
     white-space: pre;
+    text-wrap: wrap;
 }
 i{
     align-items: center;
@@ -69,4 +71,33 @@ i{
 }
 i:hover{
     transform: rotateY(360deg);
+}
+.user_log{
+    position: absolute;
+    top: 10px;
+    right: 0px;
+    font-size: 3rem;
+    color: #396762;
+}
+.user_log:hover{
+    color: #234440;
+}
+@media (width<=1000px) {
+    button{
+        font-size: 1rem !important;
+    }
+}
+@media (width<=350px) {
+    .result_main{
+        display: flex;
+        flex-direction: column;
+    }
+    .main{margin-top: 2rem;}
+    body{
+        overflow-y: visible;
+    }
+    button{
+        margin-top: 2rem;
+        font-size: 0.8rem !important;
+    }
 }

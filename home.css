@@ -35,7 +35,10 @@ body{
     background-color: rgb(22, 76, 51);
 
 }
-
+.nav_right{
+    display: flex;
+    flex-direction: row;
+}
 
 .logo{
     width: 100px;
@@ -81,4 +84,58 @@ main div.top div{
     font-size: 1.6rem;
     position: relative;
     top: -10%;
+}
+.user_log{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 3rem;
+    color: #396762;
+}
+.user_log:hover{
+    color: #234440;
+}
+@media (width<=1000px) {
+    .top{
+        height: 35%;
+    }
+    main div.top div{
+        height: 90%;
+    }
+    div.low{
+        width: 95%;
+    }
+    input{
+        width: 75% !important;
+    }
+}
+@media (width<=650px) {
+    .top{
+        position: fixed;
+        top: 85%;
+        height: 25%;
+    }
+    #word-display{
+        position: relative;
+        top: 40%;
+    }
+    main{
+        height: auto;
+        min-height: 60%;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+}
+@media (width<=500px) {
+    #word-display{
+        font-size: 1.2rem !important;
+    }
+}
+@media (width<=300px) {
+    #word-display{
+        font-size: 1rem !important;
+    }
+    .top div{
+        font-size: 1rem !important;
+    }
 }

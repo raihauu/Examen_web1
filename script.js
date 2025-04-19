@@ -10,6 +10,11 @@ let currentWordIndex = 0;
 const wordsToType = [];
 
 
+const log= document.querySelector("i.user_log")
+log.addEventListener("click",()=>{
+    window.location.href="./login.html"
+})
+
 /**********************************************************************************************************************/
 // élément de la page d'acceuil
 const start = document.querySelector(".start")
@@ -26,8 +31,8 @@ const results_wpm = document.getElementById("results_wpm");
 const results_acc = document.getElementById("results_acc");
 console.log(results_acc);
 
-let accuracies=[]
-let wpms=[]
+let accuracies=[0]
+let wpms=[0]
 
 
 /**********************************************************************************************************************/
@@ -152,14 +157,14 @@ const startTest = (wordCount = 25) => {
 
     wordsToType.forEach((word, index) => {
         const span = document.createElement("span");
-        span.textContent = word + " ";
+        span.textContent = word + "  ";
         if (index === 0) span.style.color = "#1110c1"; // Highlight first word
         wordDisplay.appendChild(span);
     });
 
     inputField.value = "";
-    results_acc.textContent = "";
-    results_wpm.textContent = "";
+    results_acc.textContent = "0.00 %";
+    results_wpm.textContent = "0.00";
 };
 
 // Start the timer when user begins typing
@@ -169,7 +174,7 @@ const startTimer = () => {
 
 // Calculate and return WPM & accuracy
 const getCurrentStats = () => {
-    const elapsedTime = ((Date.now() - previousEndTime) / 1000)-0.008; // 
+    const elapsedTime = ((Date.now() - previousEndTime) / 1000)-0.05; // 
     const wpm = (wordsToType[currentWordIndex].length / 5) / (elapsedTime / 60); // 5 chars = 1 word
     const accuracy = calcAcc(wordsToType[currentWordIndex], inputField.value);
 
@@ -224,12 +229,11 @@ const updateWord = (event) => {
 };
 
 // Highlight the current word in red
-const highlightNextWord = () => {
-    const wordElements = wordDisplay.children;
-
+const highlightNextWord = (accuracy) => {
+    const wordElements = wordDisplay.children;    
     if (currentWordIndex < wordElements.length) {
         if (currentWordIndex > 0) {
-            if (accuracies[currentWordIndex - 1]==100) {
+            if (accuracy==100) {
                 wordElements[currentWordIndex - 1].style.color = "green";
             }
             else{
@@ -267,8 +271,10 @@ if (start) {
 else if(inputField){
     // Attach `updateWord` to `keydown` instead of `input`
     inputField.addEventListener("keydown", (event) => {
-        startTimer();
-        updateWord(event);
+        if (inputField.value.trim()!="") {
+            startTimer();
+            updateWord(event);    
+        }
     });
     
     // Start the test
@@ -280,7 +286,7 @@ else if(inputField){
 
         if (startTime) {
             const startTimer=startTime
-            let timer=Math.round((duration-((Date.now()-startTimer)/1000)))
+            let timer=Math.ceil((duration-((Date.now()-startTimer)/1000)))
             if (timer>0) {
                 document.querySelector(".duration").textContent=timer
             }
