@@ -7,7 +7,7 @@
 body{
     
     height: 100vh;
-    background: linear-gradient(rgba(43, 60, 53, 0.1), rgba(43, 60, 53, 0.6)),url(photos/image.png) no-repeat ;
+    background: linear-gradient(rgba(43, 60, 53, 0.824), rgb(43, 60, 53)),url(photos/about.png)no-repeat ;
     background-size: cover;
 }
 
@@ -18,7 +18,7 @@ body{
     background-color:#d9d9d9bd;
     height: 80px;
     padding: 0 50px;
-    width: 80%;
+    width:65%;
     margin: 30px auto;
     border-radius: 10px;
     
@@ -29,13 +29,22 @@ body{
     padding-left: 0;
     margin-left: 0;
     text-decoration: none;
-    color: black;
+    color: #012121;
     font-size: x-large;
     padding: 27px 20px; 
     transition: background-color 0.3s ease;
 }
 
-.nav_about a:hover{
+.nav_about .text_link:hover{
     background-color: #0022229b;
 
+}
+    
+.all{
+    background-color:#002222b5;
+    width: 55%;
+    height: 70%;
+    margin: auto;
+    border-radius:20px;
+    
 }
