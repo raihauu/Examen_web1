@@ -174,7 +174,7 @@ const startTimer = () => {
 
 // Calculate and return WPM & accuracy
 const getCurrentStats = () => {
-    const elapsedTime = ((Date.now() - previousEndTime) / 1000)-0.05; // 
+    const elapsedTime =Math.max(((Date.now() - previousEndTime) / 1000)-0.05,0); // 
     const wpm = (wordsToType[currentWordIndex].length / 5) / (elapsedTime / 60); // 5 chars = 1 word
     const accuracy = calcAcc(wordsToType[currentWordIndex], inputField.value);
 
