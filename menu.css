@@ -78,3 +78,13 @@ body{
 .start:hover{
     background-color: #234440;
 }
+.user_log{
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    font-size: 3rem;
+    color: #396762;
+}
+.user_log:hover{
+    color: #234440;
+}

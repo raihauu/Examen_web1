@@ -35,7 +35,10 @@ body{
     background-color: rgb(22, 76, 51);
 
 }
-
+.nav_right{
+    display: flex;
+    flex-direction: row;
+}
 
 .logo{
     width: 100px;
@@ -81,4 +84,14 @@ main div.top div{
     font-size: 1.6rem;
     position: relative;
     top: -10%;
+}
+.user_log{
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    font-size: 3rem;
+    color: #396762;
+}
+.user_log:hover{
+    color: #234440;
 }
