@@ -8,6 +8,8 @@ body{
     align-items: center;
     overflow: hidden;
     width: 100%;
+    background: linear-gradient(rgba(43, 60, 53, 0.5), rgb(53, 75, 66)), url(photos/fond_result.png),no-repeat ;
+    background-size: cover;
 
     
 }
