@@ -5,10 +5,11 @@
 }
 
 body{
-    
     height: 100vh;
     background: linear-gradient(rgba(43, 60, 53, 0.824), rgb(43, 60, 53)),url(photos/about.png)no-repeat ;
     background-size: cover;
+    
+
 }
 
 .nav_about{
@@ -29,14 +30,14 @@ body{
     padding-left: 0;
     margin-left: 0;
     text-decoration: none;
-    color: #012121;
+    color: #000000;
     font-size: x-large;
     padding: 27px 20px; 
     transition: background-color 0.3s ease;
 }
 
 .nav_about .text_link:hover{
-    background-color: #0022229b;
+    background-color: #002222da;
 
 }
     
@@ -46,5 +47,35 @@ body{
     height: 70%;
     margin: auto;
     border-radius:20px;
-    
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;    
+}
+
+.top{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10%;
+    height: 60%;
+    margin-bottom: 20px;
+}
+
+.left{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 250px;
+    height: 275px;
+}
+
+.right{
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 250px;
+    height: 175px;
+}
+
+.low{
+    display: flex;
+    height: 20%;
+    justify-content: space-between;
+    margin: 0 10%;
+    background-color:rgba(255, 255, 255, 0.5) ;
 }

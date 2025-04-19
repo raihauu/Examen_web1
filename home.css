@@ -32,7 +32,7 @@ body{
 }
 
 .nav_home a:hover{
-    background-color: rgba(24, 36, 30, 0.849);
+    background-color: #002222da;
 
 }
 .nav_right{
@@ -91,7 +91,7 @@ main div.top div{
     top: 10px;
     right: 20px;
     font-size: 3rem;
-    color: #122d20e9;
+    color: #122d20;
 }
 .user_log:hover{
     color: #234440;

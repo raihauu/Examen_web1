@@ -9,6 +9,7 @@ body{
     overflow: hidden;
     width: 100%;
 
+    
 }
 .head{
     width: 75%;
@@ -54,6 +55,7 @@ body{
     font-size: 2rem;
     border-radius: 6px;
     color: white;
+    transition: background-color 0.3s ease;
 }
 .div_button button:hover{
     background-color: #214545;
