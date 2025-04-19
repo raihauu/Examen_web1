@@ -86,7 +86,7 @@ main div.top div{
     top: -10%;
 }
 .user_log{
-    position: fixed;
+    position: absolute;
     top: 10px;
     right: 20px;
     font-size: 3rem;
@@ -94,4 +94,48 @@ main div.top div{
 }
 .user_log:hover{
     color: #234440;
+}
+@media (width<=1000px) {
+    .top{
+        height: 35%;
+    }
+    main div.top div{
+        height: 90%;
+    }
+    div.low{
+        width: 95%;
+    }
+    input{
+        width: 75% !important;
+    }
+}
+@media (width<=650px) {
+    .top{
+        position: fixed;
+        top: 85%;
+        height: 25%;
+    }
+    #word-display{
+        position: relative;
+        top: 40%;
+    }
+    main{
+        height: auto;
+        min-height: 60%;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+}
+@media (width<=500px) {
+    #word-display{
+        font-size: 1.2rem !important;
+    }
+}
+@media (width<=300px) {
+    #word-display{
+        font-size: 1rem !important;
+    }
+    .top div{
+        font-size: 1rem !important;
+    }
 }

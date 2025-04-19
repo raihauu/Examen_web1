@@ -79,7 +79,7 @@ body{
     background-color: #234440;
 }
 .user_log{
-    position: fixed;
+    position: absolute;
     top: 10px;
     right: 20px;
     font-size: 3rem;
@@ -87,4 +87,30 @@ body{
 }
 .user_log:hover{
     color: #234440;
+}
+@media (width<=1072px) {
+    body{
+        overflow-y: visible;
+    }
+    .all{
+        flex-direction: column;
+        align-items: center;
+    }
+    .left{
+        width: 100%;
+        height: auto;
+        font-size: 1.5rem;
+        padding-bottom: 10%;
+    }
+    br{
+        display: none;
+    }
+    .right{
+        width: 90%;
+        align-items: center;
+        text-align: center;
+    }
+    .right img{
+        display: none;
+    }
 }
